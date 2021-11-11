@@ -13,7 +13,7 @@ describe "Author index page", type: :feature do
   end
   it 'Sbould include a table of all authors' do
     expect(page).to have_selector 'table'
-    expect(page).to have_selector 'th', text: 'Author'
+    expect(page).to have_selector 'th', text: 'Name'
     expect(page).to have_selector 'th', text: 'Homepage'
     expect(page).to have_selector 'td', text: 'Alan Turing'
     expect(page).to have_selector 'tr', count: 3
