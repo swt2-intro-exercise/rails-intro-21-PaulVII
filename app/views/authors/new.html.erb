@@ -1,6 +1,6 @@
 <h1>New author</h1>
 
-<%= form_with scope: :author, url: authors_path, local: true do |form| %>
+<%=  form_with scope: :author, url: authors_path, local: true do |form| %>
   <p>
     <%= form.label :first_name %><br>
     <%= form.text_field :first_name %>
@@ -13,7 +13,14 @@
     <%= form.label :homepage %><br>
     <%= form.text_field :homepage %>
   </p>
- 
+ <% if @author && @author.errors.any? %>
+  <p style="background-color: #ff3333">
+  <%= @author.errors.count %> error(s) occured while saving <br>
+  <% @author.errors.full_messages.each do | message| %>
+    <%= message %><br>
+  <% end %>
+  </p>
+ <% end %>
   <p>
     <%= form.submit %>
   </p>

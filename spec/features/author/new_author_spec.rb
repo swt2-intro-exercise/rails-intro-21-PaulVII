@@ -12,12 +12,32 @@ describe "New author page", type: :feature do
     expect(page).to have_field('author[last_name]')
     expect(page).to have_field('author[homepage]')
   end
-  it 'should be able to create a new autho' do
+  it 'should be able to create a new author' do
     visit new_author_path
     # Note: the specific author was suggested by GitHub Copilot
     fill_in 'author[first_name]', with: 'J.K.'
     fill_in 'author[last_name]', with: 'Rowling'
     fill_in 'author[homepage]', with: 'http://www.jkrowling.com'
     click_button 'Save Author'
+  end
+  it 'should actually create an author in the db' do
+    visit new_author_path
+    expect(Author.count).to eq(0)
+    # Note: the specific author was suggested by GitHub Copilot
+    fill_in 'author[first_name]', with: 'J.K.'
+    fill_in 'author[last_name]', with: 'Rowling'
+    fill_in 'author[homepage]', with: 'http://www.jkrowling.com'
+    click_button 'Save Author'
+    expect(Author.count).to eq(1)
+  end
+  it 'should prevent faulty authers to be inserted' do
+    visit new_author_path
+    expect(Author.count).to eq(0)
+    # Note: the specific author was suggested by GitHub Copilot
+    fill_in 'author[first_name]', with: 'J.K.'
+    fill_in 'author[homepage]', with: 'http://www.jkrowling.com'
+    click_button 'Save Author'
+    expect(page).to have_text("error")
+    expect(Author.count).to eq(0)
   end
 end
