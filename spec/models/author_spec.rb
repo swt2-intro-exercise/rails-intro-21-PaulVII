@@ -1,18 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Author, type: :model do
-  before do
+  it 'can be created' do
     @author = Author.new
     @author.first_name='Alan' 
     @author.last_name='Turing'
     @author.homepage='http://wikipedia.org/Alan_Turing'
+    expect(@author).to be_valid
   end
-
-  it 'should have user-defined fields ' do
-    expect(@author.first_name).to eq('Alan')
-    expect(@author.last_name).to eq('Turing')
-  end
-  it 'should have computed fields' do
-    expect(@author.name).to eq('Alan Turing')
+  it 'must have a last name' do
+    @author = Author.new
+    @author.first_name='Alan' 
+    @author.homepage='http://wikipedia.org/Alan_Turing'
+    expect(@author).to_not be_valid
   end
 end
