@@ -1,0 +1,13 @@
+<p>
+Authors
+<table>
+<tr><th>Author</th><th>Homepage</th></tr>
+<% Author.all.each do |author| %>
+<tr>
+    <td><%= author.name %></td>
+    <td><%= author.homepage %></td>
+</tr>
+<% end %>
+</table>
+<%= link_to 'New', new_author_path  %>
+</p>
