@@ -1,11 +1,12 @@
 <p>
 Authors
 <table>
-<tr><th>Name</th><th>Homepage</th></tr>
+<tr><th>Name</th><th>Homepage</th><th></th></tr>
 <% Author.all.each do |author| %>
 <tr>
     <td><%= author.name %></td>
     <td><%= author.homepage %></td>
+    <td><%= link_to 'Details', author_path(author) %></td>
 </tr>
 <% end %>
 </table>
