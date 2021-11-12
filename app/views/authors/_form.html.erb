@@ -1,0 +1,25 @@
+<%=  form_with model: @author, local: true do |form| %>
+  <p>
+    <%= form.label :first_name %><br>
+    <%= form.text_field :first_name %>
+  </p>
+  <p>
+    <%= form.label :last_name %><br>
+    <%= form.text_field :last_name %>
+  </p>
+ <p>
+    <%= form.label :homepage %><br>
+    <%= form.text_field :homepage %>
+  </p>
+ <% if @author && @author.errors.any? %>
+  <p style="background-color: #ff3333">
+  <%=pluralize(@author.errors.count, 'error') %> occured while saving <br>
+  <% @author.errors.full_messages.each do | message| %>
+    <%= message %><br>
+  <% end %>
+  </p>
+ <% end %>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
