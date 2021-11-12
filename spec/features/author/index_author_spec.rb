@@ -22,4 +22,7 @@ describe "Author index page", type: :feature do
   it 'Should link to the individual author\'s page' do
     expect(page).to have_link 'Details', href: author_path(Author.first)
   end
+  it 'Should link to the individuals author\'s edit page' do
+    expect(page).to have_link 'Edit', href: edit_author_path(Author.first)
+  end
 end
