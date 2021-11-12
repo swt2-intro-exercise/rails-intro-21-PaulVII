@@ -33,6 +33,6 @@ class AuthorsController < ApplicationController
     end
     private
         def author_params
-            params.require(:author).permit(:first_name, :last_name, :homepage)
+            params.require(:author).permit(:first_name, :last_name, :homepage, {:user_ids => []})
         end
 end
